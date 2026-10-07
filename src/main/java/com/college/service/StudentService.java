@@ -2,6 +2,7 @@ package com.college.service;
 
 import java.util.List;
 
+import org.slf4j.*;
 import org.springframework.stereotype.Service;
 
 import com.college.dto.EnrollmentRequest;
@@ -17,6 +18,8 @@ import jakarta.transaction.Transactional;
 @Service
 public class StudentService {
 	
+	private final static Logger log=LoggerFactory.getLogger(StudentService.class);
+	
 	private final StudentRepository studentRepository;
 	private final CourseRepository courseRepository;
 	
@@ -31,11 +34,16 @@ public class StudentService {
 	
 	public StudentResponse getStudentById(Long id) {
 		
+		log.info("Searching Student by id:{}",id);
+		
 		Student student=studentRepository.findById(id).orElse(null);
 		
 		if(student == null) {
+			log.warn("Student not found with id:{}",id);
 			return null;
 		}
+		
+		log.info("Student found with id:{}",id);
 		
 		return StudentMapper.toResponse(student);
 	}
