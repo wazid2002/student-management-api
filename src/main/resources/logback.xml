@@ -15,7 +15,7 @@
 
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>logs/invoice-service.log</file>
+		<file>logs/student-service.log</file>
 		
 		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<fileNamePattern>
